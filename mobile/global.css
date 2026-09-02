@@ -1,0 +1,20 @@
+@import 'tailwindcss';
+@import 'uniwind';
+@import 'panelui-native/theme.css';
+
+@theme {
+  --color-kora-cotton: #FDF8F5;
+  --color-kattha-ink: #2A1B18;
+  --color-slate-mist: #8C7C75;
+  --color-indigo-deep: #C2593F;
+  --color-madder-red: #8B3A2B;
+  --color-turmeric: #E59F4A;
+  --color-sage-thread: #738054;
+  --font-fraunces: 'Fraunces', serif;
+  --font-manrope: 'Manrope', sans-serif;
+}
+
+/* Tailwind only generates the classes it can see, and the components live in
+   the package rather than in this project — without this line every one of
+   them renders unstyled, which reads like a broken install. */
+@source './node_modules/panelui-native/src';

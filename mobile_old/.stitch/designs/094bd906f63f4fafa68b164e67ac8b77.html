@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Voice Cataloguing - Artisan Connect</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Manrope:wght@600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-primary-fixed": "#3c0800",
+                        "background": "#fff8f6",
+                        "tertiary": "#833828",
+                        "on-primary": "#ffffff",
+                        "primary-fixed": "#ffdad2",
+                        "on-background": "#241914",
+                        "on-error-container": "#93000a",
+                        "on-tertiary-fixed-variant": "#783020",
+                        "inverse-on-surface": "#ffede7",
+                        "surface": "#fff8f6",
+                        "on-surface": "#241914",
+                        "on-tertiary-fixed": "#3e0500",
+                        "tertiary-fixed": "#ffdad3",
+                        "inverse-primary": "#ffb4a2",
+                        "surface-container-lowest": "#ffffff",
+                        "primary": "#89331d",
+                        "on-primary-fixed-variant": "#7e2b16",
+                        "secondary-fixed": "#ffdeae",
+                        "tertiary-fixed-dim": "#ffb4a4",
+                        "error": "#ba1a1a",
+                        "on-tertiary": "#ffffff",
+                        "surface-container-low": "#fff1ec",
+                        "primary-fixed-dim": "#ffb4a2",
+                        "primary-container": "#a84a32",
+                        "on-secondary-container": "#724d00",
+                        "inverse-surface": "#3b2e28",
+                        "surface-container": "#ffe9e2",
+                        "surface-container-high": "#fae4db",
+                        "outline-variant": "#dcc0ba",
+                        "on-surface-variant": "#56423d",
+                        "surface-container-highest": "#f4ded6",
+                        "on-secondary-fixed": "#281800",
+                        "on-secondary": "#ffffff",
+                        "outline": "#89726c",
+                        "surface-tint": "#9d422b",
+                        "tertiary-container": "#a14f3d",
+                        "surface-bright": "#fff8f6",
+                        "error-container": "#ffdad6",
+                        "on-tertiary-container": "#ffdfd9",
+                        "surface-variant": "#f4ded6",
+                        "secondary": "#7f5600",
+                        "on-primary-container": "#ffdfd7",
+                        "secondary-fixed-dim": "#fcbb4c",
+                        "on-error": "#ffffff",
+                        "surface-dim": "#ebd6cd",
+                        "on-secondary-fixed-variant": "#604100",
+                        "secondary-container": "#ffbe4f"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "margin-desktop": "40px",
+                        "gutter": "24px",
+                        "margin-mobile": "16px",
+                        "container-max": "1280px",
+                        "touch-target-min": "48px",
+                        "unit": "8px"
+                    },
+                    "fontFamily": {
+                        "label-sm": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "headline-md": ["Manrope"],
+                        "headline-lg": ["Manrope"],
+                        "display-lg": ["Manrope"],
+                        "body-md": ["Inter"],
+                        "label-lg": ["Inter"],
+                        "headline-lg-mobile": ["Manrope"]
+                    },
+                    "fontSize": {
+                        "label-sm": ["12px", { "lineHeight": "16px", "fontWeight": "500" }],
+                        "body-lg": ["18px", { "lineHeight": "28px", "fontWeight": "400" }],
+                        "headline-md": ["24px", { "lineHeight": "32px", "fontWeight": "600" }],
+                        "headline-lg": ["32px", { "lineHeight": "40px", "fontWeight": "700" }],
+                        "display-lg": ["48px", { "lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "body-md": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                        "label-lg": ["14px", { "lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "600" }],
+                        "headline-lg-mobile": ["28px", { "lineHeight": "36px", "fontWeight": "700" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .waveform-bar {
+            animation: pulse 1s infinite alternate;
+        }
+        @keyframes pulse {
+            0% { height: 8px; }
+            100% { height: 48px; }
+        }
+        .delay-1 { animation-delay: 0.2s; }
+        .delay-2 { animation-delay: 0.4s; }
+        .delay-3 { animation-delay: 0.6s; }
+        .delay-4 { animation-delay: 0.8s; }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-background min-h-screen flex flex-col font-sans antialiased">
+<!-- Top App Bar -->
+<header class="bg-surface dark:bg-surface flex justify-between items-center w-full px-margin-mobile md:px-margin-desktop py-4 docked full-width top-0 z-40">
+<div class="flex items-center gap-4">
+<button class="text-on-surface-variant dark:text-on-surface-variant hover:opacity-80 transition-opacity flex items-center justify-center min-h-[48px] min-w-[48px]">
+<span class="material-symbols-outlined text-[24px]">arrow_back</span>
+</button>
+<h1 class="font-headline-md text-headline-md font-bold text-primary dark:text-primary-fixed-dim">Artisan Connect</h1>
+</div>
+<div>
+<!-- Transactional screen, no right actions needed -->
+</div>
+</header>
+<!-- Main Content -->
+<main class="flex-grow flex flex-col items-center justify-start px-margin-mobile md:px-margin-desktop py-8 max-w-3xl mx-auto w-full gap-8 pb-32">
+<div class="text-center w-full space-y-2">
+<h2 class="font-headline-lg-mobile text-headline-lg-mobile md:font-headline-lg md:text-headline-lg text-on-background">Tell us about your product</h2>
+<p class="font-body-md text-body-md text-on-surface-variant">Speak clearly to automatically extract details.</p>
+</div>
+<!-- Recording Section -->
+<div class="flex flex-col items-center justify-center space-y-6 w-full py-12">
+<!-- Default State (Hidden via JS normally, visible for mock) -->
+<button class="flex flex-col items-center justify-center gap-4 group transition-transform active:scale-95 duration-150 min-h-[48px]" id="recordBtn" onclick="toggleRecording()">
+<div class="w-32 h-32 rounded-full bg-primary flex items-center justify-center shadow-[0_8px_30px_rgba(45,33,28,0.08)] group-hover:bg-primary-container transition-colors">
+<span class="material-symbols-outlined text-[64px] text-on-primary">mic</span>
+</div>
+<span class="font-headline-md text-headline-md text-primary">Tap and Speak</span>
+</button>
+<!-- Active State (Hidden initially) -->
+<div class="hidden flex-col items-center justify-center gap-6 w-full" id="recordingState">
+<div class="h-32 flex items-center justify-center gap-2">
+<div class="w-2 rounded-full bg-primary waveform-bar"></div>
+<div class="w-2 rounded-full bg-primary waveform-bar delay-1"></div>
+<div class="w-2 rounded-full bg-primary waveform-bar delay-2"></div>
+<div class="w-2 rounded-full bg-primary waveform-bar delay-3"></div>
+<div class="w-2 rounded-full bg-primary waveform-bar delay-4"></div>
+</div>
+<span class="font-body-lg text-body-lg text-primary animate-pulse">Listening...</span>
+<button class="bg-surface text-primary border-2 border-primary rounded-full px-6 py-3 font-label-lg text-label-lg flex items-center gap-2 hover:bg-surface-container-high transition-colors min-h-[48px]" onclick="toggleRecording()">
+<span class="material-symbols-outlined">stop</span> Stop Recording
+                </button>
+</div>
+<div class="font-label-sm text-label-sm text-on-surface-variant bg-surface-container-lowest px-4 py-2 rounded-full border border-outline-variant/30 flex items-center gap-2">
+<span class="material-symbols-outlined text-[16px]">translate</span>
+                Marathi • Hindi • English
+            </div>
+</div>
+<!-- Extracted Data Section (Pre-filled example) -->
+<div class="w-full bg-surface-container-lowest rounded-xl shadow-[0_4px_20px_rgba(45,33,28,0.04)] border border-[#76665D]/10 p-6 space-y-6 relative overflow-hidden">
+<!-- Subtle AI indicator -->
+<div class="absolute top-0 left-0 w-full h-1 bg-secondary-container opacity-50"></div>
+<div class="flex items-center justify-between border-b border-outline-variant/20 pb-4">
+<h3 class="font-headline-md text-headline-md text-on-background flex items-center gap-2">
+<span class="material-symbols-outlined text-secondary">auto_awesome</span>
+                    Extracted Details
+                </h3>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+<!-- Info Card 1 -->
+<div class="bg-surface p-4 rounded-lg border border-outline-variant/20 flex items-start gap-3">
+<div class="bg-primary-container/10 p-2 rounded-lg text-primary mt-1">
+<span class="material-symbols-outlined">inventory_2</span>
+</div>
+<div>
+<p class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Product</p>
+<p class="font-body-lg text-body-lg text-on-background">Bamboo Basket</p>
+</div>
+</div>
+<!-- Info Card 2 -->
+<div class="bg-surface p-4 rounded-lg border border-outline-variant/20 flex items-start gap-3">
+<div class="bg-primary-container/10 p-2 rounded-lg text-primary mt-1">
+<span class="material-symbols-outlined">eco</span>
+</div>
+<div>
+<p class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Material</p>
+<p class="font-body-lg text-body-lg text-on-background">Bamboo</p>
+</div>
+</div>
+<!-- Info Card 3 -->
+<div class="bg-surface p-4 rounded-lg border border-outline-variant/20 flex items-start gap-3 md:col-span-2">
+<div class="bg-primary-container/10 p-2 rounded-lg text-primary mt-1">
+<span class="material-symbols-outlined">location_on</span>
+</div>
+<div>
+<p class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Made in</p>
+<p class="font-body-lg text-body-lg text-on-background">Maharashtra</p>
+</div>
+</div>
+</div>
+<!-- Action Buttons -->
+<div class="flex flex-col sm:flex-row gap-4 pt-4 mt-4 border-t border-outline-variant/20">
+<button class="flex-1 bg-primary text-on-primary rounded-lg font-label-lg text-label-lg min-h-[48px] px-6 flex items-center justify-center gap-2 hover:bg-primary-container transition-colors shadow-[0_4px_20px_rgba(45,33,28,0.04)] hover:shadow-[0_8px_30px_rgba(45,33,28,0.08)]">
+<span class="material-symbols-outlined">check</span>
+                    Looks Correct
+                </button>
+<div class="flex flex-1 gap-4">
+<button class="flex-1 bg-surface text-primary border-2 border-primary rounded-lg font-label-lg text-label-lg min-h-[48px] px-4 flex items-center justify-center gap-2 hover:bg-surface-container-high transition-colors">
+<span class="material-symbols-outlined">edit</span>
+                        Edit
+                    </button>
+<button class="flex-1 bg-surface text-on-surface-variant border-2 border-outline-variant rounded-lg font-label-lg text-label-lg min-h-[48px] px-4 flex items-center justify-center gap-2 hover:bg-surface-container-high transition-colors">
+<span class="material-symbols-outlined">replay</span>
+                        Speak Again
+                    </button>
+</div>
+</div>
+</div>
+</main>
+<script>
+        function toggleRecording() {
+            const btn = document.getElementById('recordBtn');
+            const state = document.getElementById('recordingState');
+            
+            if (btn.classList.contains('hidden')) {
+                btn.classList.remove('hidden');
+                btn.classList.add('flex');
+                state.classList.add('hidden');
+                state.classList.remove('flex');
+            } else {
+                btn.classList.add('hidden');
+                btn.classList.remove('flex');
+                state.classList.remove('hidden');
+                state.classList.add('flex');
+            }
+        }
+    </script>
+</body></html>

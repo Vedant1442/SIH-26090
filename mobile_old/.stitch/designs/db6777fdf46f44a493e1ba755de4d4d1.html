@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>My Products - Artisan Connect</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Manrope:wght@600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-primary-fixed": "#3c0800",
+                        "background": "#fff8f6",
+                        "tertiary": "#833828",
+                        "on-primary": "#ffffff",
+                        "primary-fixed": "#ffdad2",
+                        "on-background": "#241914",
+                        "on-error-container": "#93000a",
+                        "on-tertiary-fixed-variant": "#783020",
+                        "inverse-on-surface": "#ffede7",
+                        "surface": "#fff8f6",
+                        "on-surface": "#241914",
+                        "on-tertiary-fixed": "#3e0500",
+                        "tertiary-fixed": "#ffdad3",
+                        "inverse-primary": "#ffb4a2",
+                        "surface-container-lowest": "#ffffff",
+                        "primary": "#89331d",
+                        "on-primary-fixed-variant": "#7e2b16",
+                        "secondary-fixed": "#ffdeae",
+                        "tertiary-fixed-dim": "#ffb4a4",
+                        "error": "#ba1a1a",
+                        "on-tertiary": "#ffffff",
+                        "surface-container-low": "#fff1ec",
+                        "primary-fixed-dim": "#ffb4a2",
+                        "primary-container": "#a84a32",
+                        "on-secondary-container": "#724d00",
+                        "inverse-surface": "#3b2e28",
+                        "surface-container": "#ffe9e2",
+                        "surface-container-high": "#fae4db",
+                        "outline-variant": "#dcc0ba",
+                        "on-surface-variant": "#56423d",
+                        "surface-container-highest": "#f4ded6",
+                        "on-secondary-fixed": "#281800",
+                        "on-secondary": "#ffffff",
+                        "outline": "#89726c",
+                        "surface-tint": "#9d422b",
+                        "tertiary-container": "#a14f3d",
+                        "surface-bright": "#fff8f6",
+                        "error-container": "#ffdad6",
+                        "on-tertiary-container": "#ffdfd9",
+                        "surface-variant": "#f4ded6",
+                        "secondary": "#7f5600",
+                        "on-primary-container": "#ffdfd7",
+                        "secondary-fixed-dim": "#fcbb4c",
+                        "on-error": "#ffffff",
+                        "surface-dim": "#ebd6cd",
+                        "on-secondary-fixed-variant": "#604100",
+                        "secondary-container": "#ffbe4f"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "margin-desktop": "40px",
+                        "gutter": "24px",
+                        "margin-mobile": "16px",
+                        "container-max": "1280px",
+                        "touch-target-min": "48px",
+                        "unit": "8px"
+                    },
+                    "fontFamily": {
+                        "label-sm": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "headline-md": ["Manrope"],
+                        "headline-lg": ["Manrope"],
+                        "display-lg": ["Manrope"],
+                        "body-md": ["Inter"],
+                        "label-lg": ["Inter"],
+                        "headline-lg-mobile": ["Manrope"]
+                    },
+                    "fontSize": {
+                        "label-sm": ["12px", { "lineHeight": "16px", "fontWeight": "500" }],
+                        "body-lg": ["18px", { "lineHeight": "28px", "fontWeight": "400" }],
+                        "headline-md": ["24px", { "lineHeight": "32px", "fontWeight": "600" }],
+                        "headline-lg": ["32px", { "lineHeight": "40px", "fontWeight": "700" }],
+                        "display-lg": ["48px", { "lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "body-md": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                        "label-lg": ["14px", { "lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "600" }],
+                        "headline-lg-mobile": ["28px", { "lineHeight": "36px", "fontWeight": "700" }]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .icon-fill {
+            font-variation-settings: 'FILL' 1;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-background font-body-md min-h-screen flex flex-col md:flex-row">
+<!-- Navigation Drawer (Desktop/Tablet) -->
+<aside class="hidden md:flex flex-col h-screen w-80 rounded-r-xl bg-surface shadow-[0_8px_30px_rgba(45,33,28,0.08)] p-6 space-y-4 sticky top-0 flex-shrink-0 z-40">
+<div class="flex items-center space-x-4 mb-8">
+<div class="w-12 h-12 rounded-full overflow-hidden shrink-0">
+<img alt="Artisan Profile" class="w-full h-full object-cover" data-alt="A close-up portrait of a master weaver in a sunlit workshop, warm earthy tones, modern minimalist aesthetic, soft ambient lighting." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAzHvnGvIG3tTihtjW-37G_RLg6PQnhTcVCQ9WpOgsSwW0wT5u1NPzzJCIpLJyPlgtEDvaWWci4PZ_4QuaJ8mQMfJUP4LO3wMIXd8WP6K3h1Q_mK41m2F6snRqnVOtWBDI7IUPU6uB-RqYfjycbLFJ9tOXyxgcaWxq8MVm5gPX7iaLLm2Bdq36OfQaZz5FK3gN7mghmy7hF72AqmTzxOrji1PdizmtfnJ9cvTl1Qxz_6T-X0czOQHqn"/>
+</div>
+<div>
+<h2 class="font-headline-md text-headline-md font-bold text-primary">Ananya Sharma</h2>
+<p class="font-body-md text-body-md text-on-surface-variant">Master Weaver</p>
+<p class="font-label-sm text-label-sm text-primary/70">Verified Artisan</p>
+</div>
+</div>
+<nav class="flex-1 space-y-2">
+<a class="flex items-center space-x-3 p-3 rounded-lg text-on-surface-variant hover:bg-surface-container-high transition-all" href="#">
+<span class="material-symbols-outlined">home</span>
+<span class="font-label-lg text-label-lg">Home</span>
+</a>
+<a class="flex items-center space-x-3 p-3 rounded-lg bg-tertiary-container text-on-tertiary-container translate-x-1 duration-150" href="#">
+<span class="material-symbols-outlined icon-fill">inventory_2</span>
+<span class="font-label-lg text-label-lg font-bold">Products</span>
+</a>
+<a class="flex items-center space-x-3 p-3 rounded-lg text-on-surface-variant hover:bg-surface-container-high transition-all" href="#">
+<span class="material-symbols-outlined">shopping_bag</span>
+<span class="font-label-lg text-label-lg">Orders</span>
+</a>
+<a class="flex items-center space-x-3 p-3 rounded-lg text-on-surface-variant hover:bg-surface-container-high transition-all" href="#">
+<span class="material-symbols-outlined">storefront</span>
+<span class="font-label-lg text-label-lg">Market</span>
+</a>
+<a class="flex items-center space-x-3 p-3 rounded-lg text-on-surface-variant hover:bg-surface-container-high transition-all" href="#">
+<span class="material-symbols-outlined">person</span>
+<span class="font-label-lg text-label-lg">Profile</span>
+</a>
+</nav>
+<div class="pt-4 border-t border-outline-variant/30 space-y-2">
+<a class="flex items-center space-x-3 p-3 rounded-lg text-on-surface-variant hover:bg-surface-container-high transition-all" href="#">
+<span class="material-symbols-outlined">group</span>
+<span class="font-label-lg text-label-lg">Switch Profile</span>
+</a>
+<a class="flex items-center space-x-3 p-3 rounded-lg text-on-surface-variant hover:bg-surface-container-high transition-all" href="#">
+<span class="material-symbols-outlined">sync</span>
+<span class="font-label-lg text-label-lg">Offline Sync</span>
+</a>
+<a class="flex items-center space-x-3 p-3 rounded-lg text-on-surface-variant hover:bg-surface-container-high transition-all" href="#">
+<span class="material-symbols-outlined">help</span>
+<span class="font-label-lg text-label-lg">Need Help?</span>
+</a>
+<a class="flex items-center space-x-3 p-3 rounded-lg text-on-surface-variant hover:bg-surface-container-high transition-all" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span class="font-label-lg text-label-lg">Settings</span>
+</a>
+</div>
+</aside>
+<!-- Main Content Area -->
+<main class="flex-1 flex flex-col min-h-screen relative pb-[88px] md:pb-0">
+<!-- TopAppBar (Mobile) -->
+<header class="md:hidden flex justify-between items-center w-full px-margin-mobile py-4 bg-surface sticky top-0 z-40">
+<div class="w-10 h-10 rounded-full overflow-hidden shrink-0">
+<img alt="Artisan Profile" class="w-full h-full object-cover" data-alt="A close-up portrait of a master weaver in a sunlit workshop, warm earthy tones, modern minimalist aesthetic, soft ambient lighting." src="https://lh3.googleusercontent.com/aida-public/AB6AXuB8BN4lztMe0PgKBJSrlYuXQsS9eHdmvOy1NvBA5qolqdG0ksNf1FMTxNTmRm4Htaa65MyxsoO6rOwzriv0Ie-z4JrXm3ky8VceKqUAUCWRj9AaFH4EKlfgqOveycZt4Lw2MLzimT9oLZwYDUlwHK7lCdbebYIZN6B7OJf-ziYqduYDo3W-79HEcXoGv5TqwZ_FhNVkmVo758U8gMXHbdgcw0KYGtUudwFN7KjTEwLykFDbUeZA5uzA"/>
+</div>
+<h1 class="font-headline-md text-headline-md font-bold text-primary">Artisan Connect</h1>
+<button class="text-primary hover:opacity-80 transition-opacity p-2">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+</header>
+<!-- Content Canvas -->
+<div class="flex-1 p-margin-mobile md:p-margin-desktop max-w-[1280px] mx-auto w-full space-y-8">
+<!-- Page Header & Actions -->
+<div class="flex flex-col md:flex-row md:items-end justify-between gap-4">
+<div>
+<h1 class="font-headline-lg-mobile md:font-headline-lg text-headline-lg-mobile md:text-headline-lg text-on-background mb-2">My Products</h1>
+<p class="font-body-md text-body-md text-on-surface-variant">Manage your handcrafted inventory.</p>
+</div>
+<button class="h-[48px] px-6 bg-primary text-on-primary rounded-full font-label-lg text-label-lg hover:opacity-90 transition-opacity flex items-center justify-center gap-2 shadow-[0_4px_20px_rgba(45,33,28,0.04)]">
+<span class="material-symbols-outlined">add</span>
+                    Add New Product
+                </button>
+</div>
+<!-- Filter Chips -->
+<div class="flex gap-3 overflow-x-auto pb-2 -mx-margin-mobile px-margin-mobile md:mx-0 md:px-0 scrollbar-hide">
+<button class="h-[48px] px-6 bg-surface-container-highest text-on-surface rounded-full font-label-lg text-label-lg shrink-0 border border-outline-variant/30">All</button>
+<button class="h-[48px] px-6 bg-surface text-on-surface-variant rounded-full font-label-lg text-label-lg shrink-0 border border-outline-variant/30 hover:bg-surface-container-low transition-colors">Published</button>
+<button class="h-[48px] px-6 bg-surface text-on-surface-variant rounded-full font-label-lg text-label-lg shrink-0 border border-outline-variant/30 hover:bg-surface-container-low transition-colors">Drafts</button>
+</div>
+<!-- Product Grid -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-gutter">
+<!-- Product Card: Published -->
+<article class="bg-surface rounded-2xl shadow-[0_4px_20px_rgba(45,33,28,0.04)] hover:shadow-[0_8px_30px_rgba(45,33,28,0.08)] transition-shadow border border-[#76665D]/10 overflow-hidden flex flex-col group relative">
+<div class="absolute top-4 right-4 z-10">
+<div class="bg-[#1b5e20]/10 backdrop-blur-sm px-3 py-1.5 rounded-full flex items-center gap-1.5 border border-[#1b5e20]/20">
+<span class="w-2 h-2 rounded-full bg-[#388e3c]"></span>
+<span class="font-label-sm text-label-sm text-[#1b5e20] uppercase tracking-wider">Published</span>
+</div>
+</div>
+<div class="aspect-square w-full relative overflow-hidden bg-surface-container-low">
+<img alt="Indigo Handwoven Throw" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="A beautifully handwoven indigo textile draped elegantly over a wooden stand, soft natural lighting highlighting the intricate weave texture, modern minimalist setting." src="https://lh3.googleusercontent.com/aida-public/AB6AXuC0pc76FPtg9-Vd8PuuOvSyDmTWWKRtxkbo6KTX-jQdGHrCr6SNpmDOcwZvg685lUGcUZ5mU6uVr7KoCoXzYtASXAeeiv5BLG2zNGPWonMK6DXr1P6qsqEJ8XyBMiT-Z85QD3ZTvjq4MD-qleJJu2hICNYwkndr3-4hXG0MzojbQM2BuoBTsr4tM7D9Yo3PW4mHIX3y-r_g-9P7SrdSVNDfMLVFVITtTZg4Syp21UMn_Icyl3DMpSdp"/>
+</div>
+<div class="p-6 flex flex-col flex-1">
+<h3 class="font-headline-md text-headline-md text-on-background mb-1">Indigo Handwoven Throw</h3>
+<p class="font-label-sm text-label-sm text-on-surface-variant mb-4 flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px]">category</span> Textiles
+                        </p>
+<div class="mt-auto flex justify-between items-center pt-4 border-t border-outline-variant/20">
+<span class="font-headline-md text-headline-md text-primary">$125.00</span>
+<div class="flex gap-2">
+<button aria-label="Edit" class="w-10 h-10 rounded-full bg-surface-container hover:bg-surface-container-high flex items-center justify-center text-on-surface-variant transition-colors">
+<span class="material-symbols-outlined">edit</span>
+</button>
+<button aria-label="More options" class="w-10 h-10 rounded-full bg-surface-container hover:bg-surface-container-high flex items-center justify-center text-on-surface-variant transition-colors">
+<span class="material-symbols-outlined">more_vert</span>
+</button>
+</div>
+</div>
+</div>
+</article>
+<!-- Product Card: Draft -->
+<article class="bg-surface rounded-2xl shadow-[0_4px_20px_rgba(45,33,28,0.04)] hover:shadow-[0_8px_30px_rgba(45,33,28,0.08)] transition-shadow border border-[#76665D]/10 overflow-hidden flex flex-col group relative">
+<div class="absolute top-4 right-4 z-10">
+<div class="bg-surface-container-highest backdrop-blur-sm px-3 py-1.5 rounded-full flex items-center gap-1.5 border border-outline-variant/30">
+<span class="w-2 h-2 rounded-full bg-outline"></span>
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Draft</span>
+</div>
+</div>
+<div class="aspect-square w-full relative overflow-hidden bg-surface-container-low opacity-80">
+<img alt="Rustic Ceramic Bowl" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="A partially finished ceramic bowl on a pottery wheel, raw clay texture, natural light streaming through a workshop window, earthy tones." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCsYW63NhvBGIJX8UG9MowyEm6ZHNh5POFVcC9hpv9iDM8blQgaZSTPrQC13uDPCes5DU_ekjftSXfObrXa49Yk3tJU2E2veYAFASDv7QaBdVZwucgm5NqHcb7rilrvb9bKEhyYLSqBxBSI8YNLBtIjFHH1NbUS6rALX3T15_f-9YKp9gunT-SHcOEwjUb2h1i7GQwGPJry6PXauWfKGGwQZy2V4AYNMK_o4BzyJMn0doz6HitAMGDl"/>
+</div>
+<div class="p-6 flex flex-col flex-1">
+<h3 class="font-headline-md text-headline-md text-on-background mb-1 text-on-surface-variant">Rustic Ceramic Bowl</h3>
+<p class="font-label-sm text-label-sm text-on-surface-variant mb-4 flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px]">category</span> Ceramics
+                        </p>
+<div class="mt-auto flex justify-between items-center pt-4 border-t border-outline-variant/20">
+<span class="font-headline-md text-headline-md text-on-surface-variant/70">$45.00</span>
+<button class="h-10 px-4 rounded-full border border-primary text-primary hover:bg-primary/5 font-label-lg text-label-lg transition-colors flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px]">edit</span> Continue Edit
+                            </button>
+</div>
+</div>
+</article>
+<!-- Product Card: Waiting to Sync -->
+<article class="bg-surface rounded-2xl shadow-[0_4px_20px_rgba(45,33,28,0.04)] hover:shadow-[0_8px_30px_rgba(45,33,28,0.08)] transition-shadow border border-[#76665D]/10 overflow-hidden flex flex-col group relative">
+<div class="absolute top-4 right-4 z-10">
+<div class="bg-[#ff8f00]/10 backdrop-blur-sm px-3 py-1.5 rounded-full flex items-center gap-1.5 border border-[#ff8f00]/20">
+<span class="w-2 h-2 rounded-full bg-[#ffb300] animate-pulse"></span>
+<span class="font-label-sm text-label-sm text-[#ff8f00] uppercase tracking-wider">Waiting to Sync</span>
+</div>
+</div>
+<div class="aspect-square w-full relative overflow-hidden bg-surface-container-low">
+<img alt="Hand-carved Spoons Set" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="A set of hand-carved wooden spoons resting on a linen cloth, detailed wood grain, warm directional lighting, artisanal and rustic mood." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCA1qqrrgd9elCXQIc6zvA-N9wJ2dNupAsDYVfjETJMSPohK2cA67ypuOV_O2yHQUv8_32M-IuhVGm7tdpVdnboKVaGNY0WPpgp_f_s4W_3UuYatjnUYtOLQHQHLx61_QGSPHNxr6BV1fDZOESA8P3O0w1ps32lzfRz-FOwMIVHKp058rCIJb0Z3Nd-08NElmEX7RGnC6FWKdwDmuR170cMZn4ew8bxO7xhJn_1rIH_a64CN-BwkLlS"/>
+</div>
+<div class="p-6 flex flex-col flex-1">
+<h3 class="font-headline-md text-headline-md text-on-background mb-1">Hand-carved Spoons Set</h3>
+<p class="font-label-sm text-label-sm text-on-surface-variant mb-4 flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px]">category</span> Woodwork
+                        </p>
+<div class="mt-auto flex justify-between items-center pt-4 border-t border-outline-variant/20">
+<span class="font-headline-md text-headline-md text-primary">$35.00</span>
+<div class="flex gap-2">
+<button aria-label="Edit" class="w-10 h-10 rounded-full bg-surface-container hover:bg-surface-container-high flex items-center justify-center text-on-surface-variant transition-colors">
+<span class="material-symbols-outlined">edit</span>
+</button>
+<button aria-label="More options" class="w-10 h-10 rounded-full bg-surface-container hover:bg-surface-container-high flex items-center justify-center text-on-surface-variant transition-colors">
+<span class="material-symbols-outlined">more_vert</span>
+</button>
+</div>
+</div>
+</div>
+</article>
+<!-- Product Card: Published -->
+<article class="bg-surface rounded-2xl shadow-[0_4px_20px_rgba(45,33,28,0.04)] hover:shadow-[0_8px_30px_rgba(45,33,28,0.08)] transition-shadow border border-[#76665D]/10 overflow-hidden flex flex-col group relative">
+<div class="absolute top-4 right-4 z-10">
+<div class="bg-[#1b5e20]/10 backdrop-blur-sm px-3 py-1.5 rounded-full flex items-center gap-1.5 border border-[#1b5e20]/20">
+<span class="w-2 h-2 rounded-full bg-[#388e3c]"></span>
+<span class="font-label-sm text-label-sm text-[#1b5e20] uppercase tracking-wider">Published</span>
+</div>
+</div>
+<div class="aspect-square w-full relative overflow-hidden bg-surface-container-low">
+<img alt="Turquoise Silver Necklace" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="A delicate silver necklace with a raw turquoise stone pendant, placed elegantly on a smooth dark slate surface, macro photography, soft studio lighting." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCQIJCTmMTqnCZIec-ioNl6TBb7z0RBWmCmBehpwUAV6WBF9Mdy4nj_nO0T9Ot3lQYcj1SIU5U8d5pXZcMQkwiGE7__Cd8gQ1ywpLT3yb6Y-O5y3fyuW_uwypZtbdZEe7YOR_6DuQROkGy_vnkkjGGZsnZiqrXJ-HNPi0dMeU-5e7Gmo7CQCJZqEHSHT9dg0oF6so2dVj8Wz0clyJ1YuDBROrVno4yiukspFHvQc8r1JBCfxRIgsPiG"/>
+</div>
+<div class="p-6 flex flex-col flex-1">
+<h3 class="font-headline-md text-headline-md text-on-background mb-1">Turquoise Silver Necklace</h3>
+<p class="font-label-sm text-label-sm text-on-surface-variant mb-4 flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px]">category</span> Jewelry
+                        </p>
+<div class="mt-auto flex justify-between items-center pt-4 border-t border-outline-variant/20">
+<span class="font-headline-md text-headline-md text-primary">$85.00</span>
+<div class="flex gap-2">
+<button aria-label="Edit" class="w-10 h-10 rounded-full bg-surface-container hover:bg-surface-container-high flex items-center justify-center text-on-surface-variant transition-colors">
+<span class="material-symbols-outlined">edit</span>
+</button>
+<button aria-label="More options" class="w-10 h-10 rounded-full bg-surface-container hover:bg-surface-container-high flex items-center justify-center text-on-surface-variant transition-colors">
+<span class="material-symbols-outlined">more_vert</span>
+</button>
+</div>
+</div>
+</div>
+</article>
+</div>
+</div>
+</main>
+<!-- BottomNavBar (Mobile) -->
+<nav class="md:hidden fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-4 py-2 pb-safe bg-surface shadow-[0_-4px_20px_rgba(45,33,28,0.04)] rounded-t-xl border-t-0">
+<a class="flex flex-col items-center justify-center text-on-surface-variant px-4 py-1 hover:bg-surface-container-high transition-colors rounded-full" href="#">
+<span class="material-symbols-outlined mb-1">home</span>
+<span class="font-label-sm text-label-sm">Home</span>
+</a>
+<a class="flex flex-col items-center justify-center bg-primary-container text-on-primary-container rounded-full px-4 py-1 scale-90 duration-200" href="#">
+<span class="material-symbols-outlined icon-fill mb-1">inventory_2</span>
+<span class="font-label-sm text-label-sm">Products</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant px-4 py-1 hover:bg-surface-container-high transition-colors rounded-full" href="#">
+<span class="material-symbols-outlined mb-1">shopping_bag</span>
+<span class="font-label-sm text-label-sm">Orders</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant px-4 py-1 hover:bg-surface-container-high transition-colors rounded-full" href="#">
+<span class="material-symbols-outlined mb-1">storefront</span>
+<span class="font-label-sm text-label-sm">Market</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant px-4 py-1 hover:bg-surface-container-high transition-colors rounded-full" href="#">
+<span class="material-symbols-outlined mb-1">person</span>
+<span class="font-label-sm text-label-sm">Profile</span>
+</a>
+</nav>
+</body></html>

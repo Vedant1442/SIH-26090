@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Artisan Connect - Home Dashboard</title>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&amp;family=Manrope:wght@400..800&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Tailwind Config from Style Guidance -->
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+              "kora-cotton": "#FFF8EE",
+              "indigo-deep": "#1A237E",
+              "madder-red": "#B71C1C",
+            },
+            "fontFamily": {
+              "manrope": ["Manrope", "sans-serif"]
+            }
+          }
+        }
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+          font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .filled-icon {
+          font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+</head>
+<body class="bg-kora-cotton text-indigo-deep font-manrope antialiased min-h-screen flex flex-col">
+<!-- TopAppBar -->
+<header class="flex justify-between items-center w-full px-4 md:px-10 py-4 bg-kora-cotton docked full-width top-0 z-40 sticky">
+<div class="text-2xl font-bold text-indigo-deep tracking-tight">Artisan Connect</div>
+<div class="flex items-center gap-4">
+<button aria-label="Notifications" class="w-12 h-12 flex items-center justify-center rounded-full hover:bg-indigo-deep/5 transition-colors">
+<span class="material-symbols-outlined text-indigo-deep text-[28px]">notifications</span>
+</button>
+<button class="hover:opacity-80 transition-opacity">
+<img alt="User Profile Avatar" class="w-10 h-10 rounded-full object-cover border-2 border-indigo-deep/20" data-alt="A close-up portrait of an Indian woman, a master weaver, in her mid-40s with a warm, welcoming smile. She is wearing a simple, elegant earthy-toned sari. The lighting is soft, natural, and flattering, reflecting a high-end, authentic lifestyle photography style suitable for a premium marketplace profile picture. The background is slightly blurred but suggests a bright, organized workshop." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDthiMuddDRTgZBrpOuG8KuI5-W907hm4xkFE6_VmClh88MEi9I6F-yduoa0TkxuOkhCntQBctcKv4fi4Dwbg8CtxQnhRDT4K3_AKwJWpsudps_gQ1SOMEey5y5YYOcpJ4YYp0pUvcbSr2UQ4r0IVLbAXnwo14PZL4nExl8tsTM8BOzoRE-keeYcyuD7zZd93WxqkrADjVspketo8OCfZyw1uAfSUXR8jbFDsE3RcM4QuarKsMnAUk2"/>
+</button>
+</div>
+</header>
+<!-- Main Content Canvas -->
+<main class="flex-grow flex flex-col items-center justify-center w-full max-w-[1280px] mx-auto px-4 md:px-10 pb-[100px] md:pb-12 pt-4">
+<!-- Greeting Section -->
+<section class="mb-10 text-center">
+<h1 class="text-4xl md:text-5xl font-extrabold text-indigo-deep tracking-tight">नमस्कार, Sita 👋</h1>
+</section>
+<!-- Main Action Card (Speak & Create) -->
+<section class="mb-12 relative flex justify-center group cursor-pointer">
+<div class="bg-madder-red text-white w-[260px] h-[260px] md:w-[320px] md:h-[320px] rounded-full shadow-[0_12px_40px_rgba(26,35,126,0.2)] flex flex-col items-center justify-center gap-4 text-center group-hover:scale-105 transition-transform duration-300 border-4 border-kora-cotton ring-4 ring-madder-red/20">
+<div class="flex items-center justify-center mb-2 group-hover:scale-110 transition-transform duration-300">
+<span class="material-symbols-outlined filled-icon text-[80px] md:text-[100px]">mic</span>
+</div>
+<h2 class="text-2xl md:text-3xl font-bold leading-tight px-4">बोलकर Product<br/>बनाएं</h2>
+</div>
+</section>
+<!-- 3-Column Grid (Quick Actions) -->
+<section class="grid grid-cols-3 gap-4 md:gap-6 w-full max-w-md md:max-w-2xl">
+<!-- Products -->
+<button class="bg-white border-2 border-indigo-deep/10 rounded-[20px] p-4 md:p-6 flex flex-col items-center justify-center gap-3 shadow-[0_4px_20px_rgba(26,35,126,0.06)] hover:shadow-[0_8px_30px_rgba(26,35,126,0.12)] hover:-translate-y-1 transition-all duration-200">
+<div class="w-14 h-14 bg-kora-cotton rounded-full flex items-center justify-center text-indigo-deep mb-1">
+<span class="material-symbols-outlined text-[32px]">inventory_2</span>
+</div>
+<span class="text-sm md:text-base text-indigo-deep font-bold">Products</span>
+</button>
+<!-- Orders -->
+<button class="bg-white border-2 border-indigo-deep/10 rounded-[20px] p-4 md:p-6 flex flex-col items-center justify-center gap-3 shadow-[0_4px_20px_rgba(26,35,126,0.06)] hover:shadow-[0_8px_30px_rgba(26,35,126,0.12)] hover:-translate-y-1 transition-all duration-200">
+<div class="w-14 h-14 bg-kora-cotton rounded-full flex items-center justify-center text-indigo-deep mb-1">
+<span class="material-symbols-outlined text-[32px]">shopping_bag</span>
+</div>
+<span class="text-sm md:text-base text-indigo-deep font-bold">Orders</span>
+</button>
+<!-- Market -->
+<button class="bg-white border-2 border-indigo-deep/10 rounded-[20px] p-4 md:p-6 flex flex-col items-center justify-center gap-3 shadow-[0_4px_20px_rgba(26,35,126,0.06)] hover:shadow-[0_8px_30px_rgba(26,35,126,0.12)] hover:-translate-y-1 transition-all duration-200">
+<div class="w-14 h-14 bg-kora-cotton rounded-full flex items-center justify-center text-indigo-deep mb-1">
+<span class="material-symbols-outlined text-[32px]">storefront</span>
+</div>
+<span class="text-sm md:text-base text-indigo-deep font-bold">Market</span>
+</button>
+</section>
+</main>
+<!-- BottomNavBar (Mobile Only) -->
+<nav class="md:hidden fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-4 py-2 pb-safe border-t-2 border-indigo-deep/5 bg-white shadow-[0_-4px_20px_rgba(26,35,126,0.08)] rounded-t-[20px] h-[80px]">
+<!-- Home (Active) -->
+<button class="flex flex-col items-center justify-center bg-indigo-deep/10 text-indigo-deep rounded-full px-5 py-2 scale-95 duration-200 min-h-[48px] min-w-[64px]">
+<span class="material-symbols-outlined filled-icon">home</span>
+<span class="text-[12px] font-bold mt-1">Home</span>
+</button>
+<!-- Products -->
+<button class="flex flex-col items-center justify-center text-indigo-deep/60 px-4 py-2 hover:bg-kora-cotton transition-colors rounded-[20px] min-h-[48px] min-w-[64px]">
+<span class="material-symbols-outlined">inventory_2</span>
+<span class="text-[12px] font-bold mt-1">Products</span>
+</button>
+<!-- Orders -->
+<button class="flex flex-col items-center justify-center text-indigo-deep/60 px-4 py-2 hover:bg-kora-cotton transition-colors rounded-[20px] min-h-[48px] min-w-[64px]">
+<span class="material-symbols-outlined">shopping_bag</span>
+<span class="text-[12px] font-bold mt-1">Orders</span>
+</button>
+<!-- Market -->
+<button class="flex flex-col items-center justify-center text-indigo-deep/60 px-4 py-2 hover:bg-kora-cotton transition-colors rounded-[20px] min-h-[48px] min-w-[64px]">
+<span class="material-symbols-outlined">storefront</span>
+<span class="text-[12px] font-bold mt-1">Market</span>
+</button>
+<!-- Profile -->
+<button class="flex flex-col items-center justify-center text-indigo-deep/60 px-4 py-2 hover:bg-kora-cotton transition-colors rounded-[20px] min-h-[48px] min-w-[64px]">
+<span class="material-symbols-outlined">person</span>
+<span class="text-[12px] font-bold mt-1">Profile</span>
+</button>
+</nav>
+</body></html>

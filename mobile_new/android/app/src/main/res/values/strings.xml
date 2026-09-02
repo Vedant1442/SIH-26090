@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">Kalasangam</string>
+    <string name="title_activity_main">Kalasangam</string>
+    <string name="package_name">com.sih.kalasangam</string>
+    <string name="custom_url_scheme">com.sih.kalasangam</string>
+</resources>

@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>AI Image Studio - Artisan Connect</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Manrope:wght@600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                            "on-primary-fixed": "#3c0800",
+                            "background": "#fff8f6",
+                            "tertiary": "#833828",
+                            "on-primary": "#ffffff",
+                            "primary-fixed": "#ffdad2",
+                            "on-background": "#241914",
+                            "on-error-container": "#93000a",
+                            "on-tertiary-fixed-variant": "#783020",
+                            "inverse-on-surface": "#ffede7",
+                            "surface": "#fff8f6",
+                            "on-surface": "#241914",
+                            "on-tertiary-fixed": "#3e0500",
+                            "tertiary-fixed": "#ffdad3",
+                            "inverse-primary": "#ffb4a2",
+                            "surface-container-lowest": "#ffffff",
+                            "primary": "#89331d",
+                            "on-primary-fixed-variant": "#7e2b16",
+                            "secondary-fixed": "#ffdeae",
+                            "tertiary-fixed-dim": "#ffb4a4",
+                            "error": "#ba1a1a",
+                            "on-tertiary": "#ffffff",
+                            "surface-container-low": "#fff1ec",
+                            "primary-fixed-dim": "#ffb4a2",
+                            "primary-container": "#a84a32",
+                            "on-secondary-container": "#724d00",
+                            "inverse-surface": "#3b2e28",
+                            "surface-container": "#ffe9e2",
+                            "surface-container-high": "#fae4db",
+                            "outline-variant": "#dcc0ba",
+                            "on-surface-variant": "#56423d",
+                            "surface-container-highest": "#f4ded6",
+                            "on-secondary-fixed": "#281800",
+                            "on-secondary": "#ffffff",
+                            "outline": "#89726c",
+                            "surface-tint": "#9d422b",
+                            "tertiary-container": "#a14f3d",
+                            "surface-bright": "#fff8f6",
+                            "error-container": "#ffdad6",
+                            "on-tertiary-container": "#ffdfd9",
+                            "surface-variant": "#f4ded6",
+                            "secondary": "#7f5600",
+                            "on-primary-container": "#ffdfd7",
+                            "secondary-fixed-dim": "#fcbb4c",
+                            "on-error": "#ffffff",
+                            "surface-dim": "#ebd6cd",
+                            "on-secondary-fixed-variant": "#604100",
+                            "secondary-container": "#ffbe4f"
+                    },
+                    "borderRadius": {
+                            "DEFAULT": "0.25rem",
+                            "lg": "0.5rem",
+                            "xl": "0.75rem",
+                            "full": "9999px"
+                    },
+                    "spacing": {
+                            "margin-desktop": "40px",
+                            "gutter": "24px",
+                            "margin-mobile": "16px",
+                            "container-max": "1280px",
+                            "touch-target-min": "48px",
+                            "unit": "8px"
+                    },
+                    "fontFamily": {
+                            "label-sm": ["Inter"],
+                            "body-lg": ["Inter"],
+                            "headline-md": ["Manrope"],
+                            "headline-lg": ["Manrope"],
+                            "display-lg": ["Manrope"],
+                            "body-md": ["Inter"],
+                            "label-lg": ["Inter"],
+                            "headline-lg-mobile": ["Manrope"]
+                    },
+                    "fontSize": {
+                            "label-sm": ["12px", {"lineHeight": "16px", "fontWeight": "500"}],
+                            "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                            "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                            "headline-lg": ["32px", {"lineHeight": "40px", "fontWeight": "700"}],
+                            "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                            "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                            "label-lg": ["14px", {"lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "600"}],
+                            "headline-lg-mobile": ["28px", {"lineHeight": "36px", "fontWeight": "700"}]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .material-symbols-outlined.filled {
+            font-variation-settings: 'FILL' 1;
+        }
+        body {
+            background-color: theme('colors.background');
+            color: theme('colors.on-background');
+        }
+        /* Custom styles for image comparison slider */
+        .comparison-slider {
+            position: relative;
+            width: 100%;
+            overflow: hidden;
+            border-radius: theme('borderRadius.xl');
+        }
+        .comparison-img {
+            display: block;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .comparison-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 50%; /* Initial split */
+            height: 100%;
+            overflow: hidden;
+            border-right: 2px solid theme('colors.primary');
+        }
+        .comparison-overlay img {
+            width: 200%; /* Important to match parent width ratio */
+            max-width: 200%; /* Important to match parent width ratio */
+        }
+        .slider-handle {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 48px;
+            height: 48px;
+            background-color: theme('colors.surface');
+            border-radius: theme('borderRadius.full');
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: theme('boxShadow.md');
+            cursor: ew-resize;
+            z-index: 10;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="min-h-screen flex flex-col font-body-md text-body-md">
+<!-- Header (Suppressed bottom nav, task focused screen) -->
+<header class="bg-surface dark:bg-surface flex justify-between items-center w-full px-margin-mobile md:px-margin-desktop py-4 sticky top-0 z-40">
+<div class="flex items-center gap-4">
+<button class="w-12 h-12 flex items-center justify-center text-on-surface-variant hover:opacity-80 transition-opacity">
+<span class="material-symbols-outlined" data-icon="close">close</span>
+</button>
+<h1 class="font-headline-md text-headline-md font-bold text-primary dark:text-primary-fixed-dim">AI Image Studio</h1>
+</div>
+<div class="w-12 h-12 flex items-center justify-center">
+<!-- Placeholder for potential actions, or empty to balance -->
+</div>
+</header>
+<!-- Main Content -->
+<main class="flex-grow flex flex-col items-center justify-start p-margin-mobile md:p-margin-desktop max-w-container-max mx-auto w-full gap-8">
+<!-- Comparison Section -->
+<div class="w-full max-w-3xl flex flex-col items-center">
+<div class="w-full flex justify-between items-center mb-4 px-2">
+<span class="font-label-lg text-label-lg text-on-surface-variant">Original</span>
+<span class="font-label-lg text-label-lg text-primary">Enhanced</span>
+</div>
+<!-- Bento Card for Image -->
+<div class="w-full bg-surface-container-lowest rounded-xl shadow-[0_4px_20px_rgba(45,33,28,0.04)] border border-outline/10 p-4 relative">
+<!-- Subtle AI indicator -->
+<div class="absolute top-6 right-6 z-20 flex items-center gap-1 bg-secondary-container/20 px-3 py-1.5 rounded-full border border-secondary/20">
+<span class="material-symbols-outlined filled text-secondary text-sm" data-icon="auto_awesome" style="font-size: 16px;">auto_awesome</span>
+<span class="font-label-sm text-label-sm text-on-secondary-container">AI Enhanced</span>
+</div>
+<!-- Comparison Slider Container (Visual Mockup) -->
+<div class="comparison-slider aspect-[4/3] md:aspect-video relative rounded-lg overflow-hidden group">
+<!-- Base Image (After) -->
+<img class="comparison-img absolute inset-0" data-alt="A beautifully enhanced, professional photograph of a woven artisan basket. The basket is perfectly centered on a seamless, warm cream background. The lighting is soft, even, and studio-quality, highlighting the intricate texture of the natural fibers without any harsh shadows. The overall aesthetic is premium, clean, and suitable for a high-end online marketplace." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDGj6BM11kUDvGuMJz6X6j58XBVG95TgBTrU9x_L4E9sei12bh0jLL3HQq5kaRnKJT41qqVARDpxWcC8wUXs7pI64MH-QAMZyDLVW_6F3ivr4YlgIFP8uhNSXpgIBduiDeFGBRIgvQK-eyE2EeaROJq1UHKontiCdu5hYZVHmrvwG8KuM4YLccoDQmtoxfElhWlPp5KnT4Ahg8StljAXJSZ-hpjwpRL8f6O571Mh8Jy_S7jdLDehHJl"/>
+<!-- Overlay Image (Before) -->
+<div class="comparison-overlay w-1/2 absolute inset-y-0 left-0 border-r-2 border-primary overflow-hidden">
+<img class="absolute inset-y-0 left-0 w-[200%] max-w-[200%] h-full object-cover object-left" data-alt="A raw, unedited, poorly lit photograph of a woven artisan basket. The basket is slightly off-center and sits on a cluttered, dark, and visually distracting background. The lighting is uneven, casting harsh shadows that obscure the details of the weave. The image feels amateurish and lacks professional presentation." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDiT-gzFp0lLoZh4_TEcNqKOiYLNa8eruPW9-CPphdrASvpZQYsJTSpLx3IJPSn3L_w-MwyCfnDujb-KkMizj0oPE7mGHbeGqJB-uIKtoHzeKEoON58u7BMv8SqLg_LHOd-mQOvKr4QgczQ9qvZOhqzt-jKrB1lOcSY7uwWBllXk7gHjsJ0vMNq28Aclm1Y0V83si7oEFwtqMz1IR1iMVLfBflbLmkLgSUdS2TmPqyhAdBmXQg6acu1" style="width: 200%; max-width: none;"/>
+</div>
+<!-- Slider Handle -->
+<div class="slider-handle absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-12 h-12 bg-surface rounded-full shadow-[0_8px_30px_rgba(45,33,28,0.08)] flex items-center justify-center cursor-ew-resize border border-outline/10 text-primary">
+<span class="material-symbols-outlined" data-icon="swap_horiz">swap_horiz</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Checklist & Actions Bento Grid -->
+<div class="w-full max-w-3xl grid grid-cols-1 md:grid-cols-2 gap-6">
+<!-- Checklist Card -->
+<div class="bg-surface-container-lowest rounded-xl shadow-[0_4px_20px_rgba(45,33,28,0.04)] border border-outline/10 p-6 flex flex-col justify-center">
+<h2 class="font-headline-md text-headline-md text-on-surface mb-6">Enhancements Applied</h2>
+<ul class="space-y-4">
+<li class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-full bg-surface-container-high flex items-center justify-center text-primary">
+<span class="material-symbols-outlined filled" data-icon="check">check</span>
+</div>
+<span class="font-body-md text-body-md text-on-surface">Background removed</span>
+</li>
+<li class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-full bg-surface-container-high flex items-center justify-center text-primary">
+<span class="material-symbols-outlined filled" data-icon="check">check</span>
+</div>
+<span class="font-body-md text-body-md text-on-surface">Lighting improved</span>
+</li>
+<li class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-full bg-surface-container-high flex items-center justify-center text-primary">
+<span class="material-symbols-outlined filled" data-icon="check">check</span>
+</div>
+<span class="font-body-md text-body-md text-on-surface">Product centered</span>
+</li>
+</ul>
+</div>
+<!-- Action Card -->
+<div class="bg-surface-container-low rounded-xl border border-outline/10 p-6 flex flex-col justify-between h-full">
+<div class="mb-8">
+<p class="font-body-lg text-body-lg text-on-surface-variant mb-2">Ready for Marketplace</p>
+<p class="font-body-md text-body-md text-on-surface-variant/80">This image meets Artisan Connect's premium quality standards.</p>
+</div>
+<div class="flex flex-col gap-4">
+<button class="w-full h-12 bg-primary text-on-primary rounded-lg font-label-lg text-label-lg hover:opacity-90 transition-opacity flex items-center justify-center shadow-[0_4px_20px_rgba(45,33,28,0.04)] min-h-[48px]">
+                        Use Image
+                    </button>
+<button class="w-full h-12 border-2 border-primary text-primary rounded-lg font-label-lg text-label-lg hover:bg-primary-container/10 transition-colors flex items-center justify-center min-h-[48px]">
+                        Try Again
+                    </button>
+</div>
+</div>
+</div>
+</main>
+<!-- Footer Meta -->
+<footer class="w-full py-6 flex justify-center items-center gap-2 text-on-surface-variant/60">
+<span class="material-symbols-outlined text-sm" data-icon="offline_bolt">offline_bolt</span>
+<span class="font-label-sm text-label-sm">Enhanced offline</span>
+</footer>
+</body></html>

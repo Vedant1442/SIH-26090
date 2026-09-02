@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Artisan Connect - Language Selection</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Manrope:wght@600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-primary-fixed": "#3c0800",
+                        "background": "#fff8f6",
+                        "tertiary": "#833828",
+                        "on-primary": "#ffffff",
+                        "primary-fixed": "#ffdad2",
+                        "on-background": "#241914",
+                        "on-error-container": "#93000a",
+                        "on-tertiary-fixed-variant": "#783020",
+                        "inverse-on-surface": "#ffede7",
+                        "surface": "#fff8f6",
+                        "on-surface": "#241914",
+                        "on-tertiary-fixed": "#3e0500",
+                        "tertiary-fixed": "#ffdad3",
+                        "inverse-primary": "#ffb4a2",
+                        "surface-container-lowest": "#ffffff",
+                        "primary": "#89331d",
+                        "on-primary-fixed-variant": "#7e2b16",
+                        "secondary-fixed": "#ffdeae",
+                        "tertiary-fixed-dim": "#ffb4a4",
+                        "error": "#ba1a1a",
+                        "on-tertiary": "#ffffff",
+                        "surface-container-low": "#fff1ec",
+                        "primary-fixed-dim": "#ffb4a2",
+                        "primary-container": "#a84a32",
+                        "on-secondary-container": "#724d00",
+                        "inverse-surface": "#3b2e28",
+                        "surface-container": "#ffe9e2",
+                        "surface-container-high": "#fae4db",
+                        "outline-variant": "#dcc0ba",
+                        "on-surface-variant": "#56423d",
+                        "surface-container-highest": "#f4ded6",
+                        "on-secondary-fixed": "#281800",
+                        "on-secondary": "#ffffff",
+                        "outline": "#89726c",
+                        "surface-tint": "#9d422b",
+                        "tertiary-container": "#a14f3d",
+                        "surface-bright": "#fff8f6",
+                        "error-container": "#ffdad6",
+                        "on-tertiary-container": "#ffdfd9",
+                        "surface-variant": "#f4ded6",
+                        "secondary": "#7f5600",
+                        "on-primary-container": "#ffdfd7",
+                        "secondary-fixed-dim": "#fcbb4c",
+                        "on-error": "#ffffff",
+                        "surface-dim": "#ebd6cd",
+                        "on-secondary-fixed-variant": "#604100",
+                        "secondary-container": "#ffbe4f"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "margin-desktop": "40px",
+                        "gutter": "24px",
+                        "margin-mobile": "16px",
+                        "container-max": "1280px",
+                        "touch-target-min": "48px",
+                        "unit": "8px"
+                    },
+                    "fontFamily": {
+                        "label-sm": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "headline-md": ["Manrope"],
+                        "headline-lg": ["Manrope"],
+                        "display-lg": ["Manrope"],
+                        "body-md": ["Inter"],
+                        "label-lg": ["Inter"],
+                        "headline-lg-mobile": ["Manrope"]
+                    },
+                    "fontSize": {
+                        "label-sm": ["12px", { "lineHeight": "16px", "fontWeight": "500" }],
+                        "body-lg": ["18px", { "lineHeight": "28px", "fontWeight": "400" }],
+                        "headline-md": ["24px", { "lineHeight": "32px", "fontWeight": "600" }],
+                        "headline-lg": ["32px", { "lineHeight": "40px", "fontWeight": "700" }],
+                        "display-lg": ["48px", { "lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "body-md": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                        "label-lg": ["14px", { "lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "600" }],
+                        "headline-lg-mobile": ["28px", { "lineHeight": "36px", "fontWeight": "700" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        body {
+            background-color: theme('colors.background');
+            color: theme('colors.on-background');
+        }
+        .lang-card {
+            border: 1px solid rgba(118, 102, 93, 0.1);
+        }
+        .lang-card:hover, .lang-card.active {
+            border-color: theme('colors.primary');
+            background-color: theme('colors.surface-container-high');
+        }
+        .lang-card.active {
+            box-shadow: 0 8px 30px rgba(45, 33, 28, 0.08);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="min-h-screen flex flex-col items-center justify-center p-margin-mobile md:p-margin-desktop bg-background">
+<!-- Top App Bar (Simplified for Onboarding/Transactional) -->
+<header class="w-full absolute top-0 left-0 bg-surface dark:bg-surface flex justify-center items-center py-4 px-margin-mobile md:px-margin-desktop z-50">
+<h1 class="font-headline-md text-headline-md font-bold text-primary dark:text-primary-fixed-dim">Artisan Connect</h1>
+</header>
+<main class="w-full max-w-lg mt-24 flex flex-col items-center">
+<!-- Header Section -->
+<div class="text-center mb-12 w-full">
+<h2 class="font-headline-lg-mobile text-headline-lg-mobile md:font-display-lg md:text-display-lg text-on-surface mb-4">
+                आप किस भाषा में बात करना चाहेंगे?
+            </h2>
+<p class="font-body-lg text-body-lg text-on-surface-variant">
+                Choose the language you are comfortable with
+            </p>
+</div>
+<!-- Language Selection Cards -->
+<div class="w-full space-y-4 mb-12">
+<!-- Marathi Card -->
+<button class="lang-card w-full min-h-[56px] rounded-xl bg-surface p-4 flex items-center justify-between transition-all duration-200 group">
+<span class="font-headline-md text-headline-md text-on-surface">मराठी (Marathi)</span>
+<span class="material-symbols-outlined text-outline group-hover:text-primary group-[.active]:text-primary transition-colors" data-icon="radio_button_unchecked">radio_button_unchecked</span>
+</button>
+<!-- Hindi Card (Active State Example) -->
+<button class="lang-card active w-full min-h-[56px] rounded-xl bg-surface-container-high p-4 flex items-center justify-between transition-all duration-200 group border-primary shadow-[0_8px_30px_rgba(45,33,28,0.08)]">
+<span class="font-headline-md text-headline-md text-on-surface">हिंदी (Hindi)</span>
+<span class="material-symbols-outlined text-primary transition-colors" data-icon="radio_button_checked" data-weight="fill" style="font-variation-settings: 'FILL' 1;">radio_button_checked</span>
+</button>
+<!-- English Card -->
+<button class="lang-card w-full min-h-[56px] rounded-xl bg-surface p-4 flex items-center justify-between transition-all duration-200 group">
+<span class="font-headline-md text-headline-md text-on-surface">English</span>
+<span class="material-symbols-outlined text-outline group-hover:text-primary group-[.active]:text-primary transition-colors" data-icon="radio_button_unchecked">radio_button_unchecked</span>
+</button>
+</div>
+<!-- Primary Button -->
+<button class="w-full bg-primary text-on-primary min-h-[56px] rounded-full font-label-lg text-label-lg flex items-center justify-center hover:bg-primary-container transition-colors shadow-[0_4px_20px_rgba(45,33,28,0.04)]">
+            Continue
+        </button>
+</main>
+<!-- Suppressed BottomNav and SideNav as this is a linear/transactional onboarding screen -->
+<script>
+        // Simple interaction script to handle card selection
+        document.querySelectorAll('.lang-card').forEach(card => {
+            card.addEventListener('click', function() {
+                // Remove active class and reset icons from all cards
+                document.querySelectorAll('.lang-card').forEach(c => {
+                    c.classList.remove('active', 'bg-surface-container-high', 'border-primary', 'shadow-[0_8px_30px_rgba(45,33,28,0.08)]');
+                    c.classList.add('bg-surface');
+                    const icon = c.querySelector('.material-symbols-outlined');
+                    icon.textContent = 'radio_button_unchecked';
+                    icon.classList.remove('text-primary');
+                    icon.classList.add('text-outline');
+                    icon.removeAttribute('style');
+                });
+
+                // Add active state to clicked card
+                this.classList.add('active', 'bg-surface-container-high', 'border-primary', 'shadow-[0_8px_30px_rgba(45,33,28,0.08)]');
+                this.classList.remove('bg-surface');
+                const activeIcon = this.querySelector('.material-symbols-outlined');
+                activeIcon.textContent = 'radio_button_checked';
+                activeIcon.classList.remove('text-outline');
+                activeIcon.classList.add('text-primary');
+                activeIcon.setAttribute('style', "font-variation-settings: 'FILL' 1;");
+            });
+        });
+    </script>
+</body></html>
