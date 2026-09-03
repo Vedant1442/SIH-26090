@@ -9,6 +9,7 @@ type StoreContextType = {
   docSteps: DocStep[];
   events: typeof events;
   addProduct: (product: Omit<Product, "id">) => void;
+  updateProduct: (id: string, updates: Partial<Product>) => void;
   verifyProduct: (id: string) => void;
   updateDocStatus: (id: string, status: DocStep["status"]) => void;
   isLoading: boolean;
@@ -19,11 +20,20 @@ const StoreContext = createContext<StoreContextType | undefined>(undefined);
 export function StoreProvider({ children }: { children: React.ReactNode }) {
   const queryClient = useQueryClient();
 
-  // Fetch products
+  const getActiveMerchantId = () => {
+    if (typeof window === "undefined") return "";
+    return localStorage.getItem("merchantPhone") || localStorage.getItem("merchantName") || "";
+  };
+
+  // Fetch products scoped to the current artisan / merchant
   const { data: products = [], isLoading: isLoadingProducts } = useQuery<Product[]>({
-    queryKey: ["products"],
+    queryKey: ["products", getActiveMerchantId()],
     queryFn: async () => {
-      const res = await fetch(`${API_URL}/products`);
+      const merchantId = getActiveMerchantId();
+      const url = merchantId
+        ? `${API_URL}/products?merchantId=${encodeURIComponent(merchantId)}`
+        : `${API_URL}/products`;
+      const res = await fetch(url);
       if (!res.ok) return [];
       return res.json();
     },
@@ -42,10 +52,15 @@ export function StoreProvider({ children }: { children: React.ReactNode }) {
   // Mutations
   const addProductMutation = useMutation({
     mutationFn: async (product: Omit<Product, "id">) => {
+      const merchantId = getActiveMerchantId();
+      const payload = {
+        ...product,
+        merchantId: product.merchantId || merchantId || product.capturedBy,
+      };
       const res = await fetch(`${API_URL}/products`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(product),
+        body: JSON.stringify(payload),
       });
       return res.json();
     },
@@ -58,6 +73,20 @@ export function StoreProvider({ children }: { children: React.ReactNode }) {
     mutationFn: async (id: string) => {
       const res = await fetch(`${API_URL}/products/${id}/verify`, {
         method: "PUT",
+      });
+      return res.json();
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["products"] });
+    },
+  });
+
+  const updateProductMutation = useMutation({
+    mutationFn: async ({ id, updates }: { id: string; updates: Partial<Product> }) => {
+      const res = await fetch(`${API_URL}/products/${id}`, {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(updates),
       });
       return res.json();
     },
@@ -84,6 +113,10 @@ export function StoreProvider({ children }: { children: React.ReactNode }) {
     addProductMutation.mutate(product);
   };
 
+  const updateProduct = (id: string, updates: Partial<Product>) => {
+    updateProductMutation.mutate({ id, updates });
+  };
+
   const verifyProduct = (id: string) => {
     verifyProductMutation.mutate(id);
   };
@@ -101,6 +134,7 @@ export function StoreProvider({ children }: { children: React.ReactNode }) {
         docSteps,
         events, // Kept static for now as per requirements
         addProduct,
+        updateProduct,
         verifyProduct,
         updateDocStatus,
         isLoading,

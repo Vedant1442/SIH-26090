@@ -255,7 +255,7 @@ function CapturePage() {
   const localFallback = (text: string) => {
     const lower = text.toLowerCase();
     const priceMatch = text.match(/(\d+)/);
-    const p = priceMatch ? parseInt(priceMatch[1]) : 1500;
+    const p = priceMatch && priceMatch[1] ? parseInt(priceMatch[1], 10) : 1500;
     setTitle(text.slice(0, 40));
     setPrice(p);
     setPriceLow(Math.round(p * 0.85));
@@ -282,6 +282,11 @@ function CapturePage() {
 
   const handleSave = () => {
     setStep(5);
+    const merchantId =
+      (typeof window !== "undefined"
+        ? localStorage.getItem("merchantPhone") || localStorage.getItem("merchantName")
+        : "") || merchantName;
+
     addProduct({
       name: title,
       nameLocal: titleTelugu || titleMarathi || titleHindi || title,
@@ -291,10 +296,12 @@ function CapturePage() {
       priceHigh,
       confidence,
       capturedBy: merchantName,
+      merchantId,
       image: enhancedImage || originalImage || "https://images.unsplash.com/photo-1610030469983-98e550d6193c?w=1000&q=70",
       materials,
       timeHours: 10,
       exceptions: [],
+      priceReasoning,
     });
     setTimeout(() => navigate({ to: "/catalog" }), 600);
   };

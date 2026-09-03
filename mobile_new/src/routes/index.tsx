@@ -1,6 +1,6 @@
 import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
-import { Camera, PackageOpen, FileCheck2, ArrowRight, LogOut } from "lucide-react";
+import { Camera, PackageOpen, FileCheck2, ArrowRight } from "lucide-react";
 import { AppShell } from "@/components/kala/shell";
 import { useStore } from "@/lib/store";
 
@@ -104,11 +104,6 @@ function Index() {
     }
   }, [navigate]);
 
-  const handleLogout = () => {
-    localStorage.clear();
-    navigate({ to: "/onboarding", replace: true });
-  };
-
   if (isLoading || !merchantName) {
     return <div className="p-8 text-center text-muted-foreground">Loading...</div>;
   }
@@ -121,18 +116,9 @@ function Index() {
   return (
     <AppShell title="Kalasangam" subtitle="Virtual Business Manager">
       <div className="flex flex-col gap-5">
-        <div className="flex items-start justify-between px-1">
-          <div className="space-y-1">
-            <p className="text-xl font-medium tracking-tight">{langText.greeting}, {merchantName}</p>
-            <p className="text-sm text-muted-foreground">{langText.subtitle}</p>
-          </div>
-          <button 
-            onClick={handleLogout}
-            className="mt-1 rounded-full p-2 text-muted-foreground hover:bg-muted hover:text-primary transition-colors"
-            title="Log out / Change Language"
-          >
-            <LogOut className="size-5" />
-          </button>
+        <div className="px-1 space-y-1">
+          <p className="text-xl font-medium tracking-tight">{langText.greeting}, {merchantName}</p>
+          <p className="text-sm text-muted-foreground">{langText.subtitle}</p>
         </div>
 
         <Link

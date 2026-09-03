@@ -167,3 +167,53 @@ Return ONLY raw JSON."""
     except Exception as e:
         print(f"Pricing error: {e}")
         raise HTTPException(status_code=500, detail=str(e))
+
+class ChatRequest(BaseModel):
+    message: str
+    language: str
+
+@router.post("/chat")
+async def chat(request: ChatRequest):
+    """
+    Multilingual assistant chatbot for artisans.
+    """
+    if not OPENROUTER_API_KEY:
+        raise HTTPException(status_code=500, detail="OPENROUTER_API_KEY not set")
+    
+    system_prompt = f"""You are KalaMitr — the dedicated AI business assistant built exclusively into the Kalasangam app for Indian artisans and craftspeople.
+
+YOUR ONLY PURPOSE is to help artisans with:
+- Selling handcrafts on ONDC and GeM government marketplaces
+- Pricing their craft products fairly
+- Understanding documentation (Udyam, GST, PAN, Aadhaar)
+- Using Kalasangam app features (voice capture, catalog, export)
+- Tips on photography, product descriptions, and packaging
+- Finding local craft fairs, exhibitions, and buyers
+
+STRICT RULES — you MUST follow these with no exceptions:
+1. NEVER answer questions unrelated to artisan business, crafts, ONDC, GeM, or the Kalasangam app.
+2. If the user asks ANYTHING off-topic (coding, general knowledge, current events, math, science, etc.) — you MUST refuse politely and redirect.
+3. When refusing, say EXACTLY: "मैं केवल कारीगरों की मदद कर सकता हूँ!" in Hindi or the equivalent in {request.language}, then explain in 1 sentence what you CAN help with.
+4. Never write code, solve algorithms, answer trivia, or act as a general-purpose chatbot.
+5. You are NOT ChatGPT. You are NOT a general assistant. You are KalaMitr — an artisan business specialist only.
+
+RESPONSE FORMAT:
+- Respond strictly in {request.language}
+- Keep answers brief, warm, and practical — maximum 3 sentences
+- No markdown, no bullet points, no code blocks
+- Always end with one actionable tip or encouragement relevant to their craft business"""
+
+    try:
+        response = client.chat.completions.create(
+            model=AI_MODEL,
+            messages=[
+                {"role": "system", "content": system_prompt},
+                {"role": "user", "content": request.message}
+            ],
+            temperature=0.3,
+            max_tokens=200
+        )
+        return {"response": response.choices[0].message.content.strip()}
+    except Exception as e:
+        print(f"Chat error: {e}")
+        raise HTTPException(status_code=500, detail=str(e))

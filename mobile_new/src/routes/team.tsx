@@ -1,8 +1,9 @@
 import { createFileRoute, useNavigate } from "@tanstack/react-router";
-import { UserPlus, ShieldCheck, Languages, Wifi } from "lucide-react";
+import { UserPlus, ShieldCheck, Languages, Wifi, LogOut } from "lucide-react";
 import { AppShell, Panel, PanelRow, Tag } from "@/components/kala/shell";
 import { staff } from "@/data/kalasangam";
 import { useStore } from "@/lib/store";
+import { getInitials } from "@/lib/utils";
 import { useState, useEffect } from "react";
 
 export const Route = createFileRoute("/team")({
@@ -36,7 +37,9 @@ const t = {
     lowConn: "Low-connectivity mode",
     on: "On",
     off: "Off",
-    inviteMsg: "Invite link copied to clipboard!"
+    inviteMsg: "Invite link copied to clipboard!",
+    account: "Account",
+    logout: "Log out",
   },
   Hindi: {
     title: "टीम",
@@ -54,7 +57,9 @@ const t = {
     lowConn: "कम-कनेक्टिविटी मोड",
     on: "चालू",
     off: "बंद",
-    inviteMsg: "आमंत्रण लिंक कॉपी हो गया!"
+    inviteMsg: "आमंत्रण लिंक कॉपी हो गया!",
+    account: "खाता",
+    logout: "लॉग आउट करें",
   },
   Telugu: {
     title: "బృందం",
@@ -72,7 +77,9 @@ const t = {
     lowConn: "తక్కువ-కనెక్టివిటీ మోడ్",
     on: "ఆన్",
     off: "ఆఫ్",
-    inviteMsg: "ఆహ్వాన లింక్ కాపీ చేయబడింది!"
+    inviteMsg: "ఆహ్వాన లింక్ కాపీ చేయబడింది!",
+    account: "ఖాతా",
+    logout: "లాగ్ అవుట్ చేయండి",
   },
   Marathi: {
     title: "संघ",
@@ -90,7 +97,9 @@ const t = {
     lowConn: "कमी-कनेक्टिव्हिटी मोड",
     on: "चालू",
     off: "बंद",
-    inviteMsg: "आमंत्रण लिंक कॉपी केली!"
+    inviteMsg: "आमंत्रण लिंक कॉपी केली!",
+    account: "खाते",
+    logout: "लॉग आउट करा",
   }
 };
 
@@ -120,12 +129,18 @@ function TeamPage() {
   const pendingCount = products.filter((p) => p.status !== "verified").length;
   const langText = t[merchantLang];
 
+  const handleLogout = () => {
+    localStorage.clear();
+    sessionStorage.clear();
+    navigate({ to: "/onboarding", replace: true });
+  };
+
   return (
     <AppShell title={langText.title} subtitle={`${merchantName} · ${langText.masterAccount}`}>
       <Panel title={langText.merchant}>
         <PanelRow>
           <span className="grid size-11 shrink-0 place-items-center rounded-full bg-primary font-mono text-xs text-primary-foreground">
-            {merchantName.substring(0, 2).toUpperCase()}
+            {getInitials(merchantName)}
           </span>
           <div className="min-w-0 flex-1">
             <p className="truncate text-sm font-semibold">{merchantName}</p>
@@ -186,6 +201,16 @@ function TeamPage() {
           <Wifi className="size-4 shrink-0 text-muted-foreground" />
           <span className="min-w-0 flex-1 truncate text-sm">{langText.lowConn}</span>
           <Tag tone={lowConn ? "success" : "muted"}>{lowConn ? langText.on : langText.off}</Tag>
+        </button>
+      </Panel>
+
+      <Panel title={langText.account}>
+        <button
+          onClick={handleLogout}
+          className="panel-row hover:bg-destructive/10 text-destructive transition-colors w-full text-left font-medium"
+        >
+          <LogOut className="size-4 shrink-0" />
+          <span className="min-w-0 flex-1 truncate text-sm">{langText.logout}</span>
         </button>
       </Panel>
     </AppShell>

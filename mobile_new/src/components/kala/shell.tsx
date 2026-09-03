@@ -1,7 +1,9 @@
 import { Link, useRouterState } from "@tanstack/react-router";
-import type { ReactNode } from "react";
-import { Home, Package, Mic, ShieldCheck, MapPin } from "lucide-react";
-import { cn } from "@/lib/utils";
+import { useState, useEffect, type ReactNode } from "react";
+import { Home, Package, Mic, ShieldCheck, MapPin, Wifi, BatteryMedium } from "lucide-react";
+import { cn, getInitials } from "@/lib/utils";
+import { Chatbot } from "./chatbot";
+import { HelpWidgets } from "./help-widgets";
 
 const tabs = [
   { to: "/", label: "Home", icon: Home },
@@ -88,11 +90,32 @@ export function AppShell({
   children: ReactNode;
 }) {
   const pathname = useRouterState({ select: (s) => s.location.pathname });
+  const [initials, setInitials] = useState("KA");
+
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      const name = localStorage.getItem("merchantName");
+      setInitials(getInitials(name || undefined));
+    }
+  }, []);
 
   return (
-    <div className="min-h-screen bg-background">
-      <div className="mx-auto flex min-h-screen w-full max-w-md flex-col border-border bg-background sm:max-w-lg sm:border-x lg:max-w-xl">
-        <header className="sticky top-0 z-20 border-b border-border bg-background/85 px-4 pt-5 pb-3 backdrop-blur">
+    <div className="min-h-screen w-full flex justify-center">
+      <div className="mx-auto flex min-h-screen w-full max-w-[430px] flex-col border-border/80 bg-background sm:border-x shadow-[0_0_70px_rgba(0,0,0,0.4)] relative">
+        {/* Mock Mobile Phone Status Bar (Visible on desktop screens) */}
+        <div className="hidden sm:flex items-center justify-between px-6 pt-2.5 pb-1 text-[11px] font-semibold text-muted-foreground select-none bg-background/90 backdrop-blur z-20">
+          <span className="font-mono text-xs text-foreground font-bold">9:41</span>
+          <div className="h-4 w-20 rounded-full bg-zinc-900/90 mx-auto flex items-center justify-center">
+            <div className="size-1.5 rounded-full bg-zinc-700 ml-auto mr-2" />
+          </div>
+          <div className="flex items-center gap-1.5 text-[10px]">
+            <span className="font-bold text-foreground">5G</span>
+            <Wifi className="size-3 text-foreground" />
+            <BatteryMedium className="size-3.5 text-foreground" />
+          </div>
+        </div>
+
+        <header className="sticky top-0 z-20 border-b border-border bg-background/85 px-4 pt-3.5 pb-3 backdrop-blur">
           <div className="grid grid-cols-[minmax(0,1fr)_auto] items-center gap-3">
             <div className="min-w-0">
               <h1 className="truncate text-2xl font-semibold">{title}</h1>
@@ -100,17 +123,21 @@ export function AppShell({
             </div>
             <Link
               to="/team"
-              className="grid size-10 shrink-0 place-items-center rounded-full bg-primary font-mono text-xs text-primary-foreground"
+              className="grid size-10 shrink-0 place-items-center rounded-full bg-primary font-mono text-xs text-primary-foreground shadow-sm"
               aria-label="Merchant and team"
             >
-              LD
+              {initials}
             </Link>
           </div>
         </header>
 
+        <HelpWidgets />
+
         <main className="flex-1 space-y-5 px-4 pt-4 pb-28">{children}</main>
 
-        <nav className="fixed inset-x-0 bottom-0 z-30 mx-auto w-full max-w-md border-t border-border bg-background/95 pb-[env(safe-area-inset-bottom)] backdrop-blur sm:max-w-lg lg:max-w-xl">
+        <Chatbot />
+
+        <nav className="fixed inset-x-0 bottom-0 z-30 mx-auto w-full max-w-[430px] border-t border-border/80 bg-background/95 pb-[env(safe-area-inset-bottom)] backdrop-blur sm:border-x">
           <ul className="grid grid-cols-5">
             {tabs.map((t) => {
               const active = pathname === t.to;

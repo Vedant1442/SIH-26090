@@ -113,7 +113,7 @@ function RootShell({ children }: { children: ReactNode }) {
       <head>
         <HeadContent />
       </head>
-      <body>
+      <body className="min-h-screen bg-zinc-950/95 text-foreground antialiased [background-image:radial-gradient(#27272a_1px,transparent_1px)] [background-size:24px_24px]">
         {children}
         <Scripts />
       </body>

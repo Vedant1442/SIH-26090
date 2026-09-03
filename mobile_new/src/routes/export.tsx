@@ -30,6 +30,35 @@ function ExportPage() {
   const verified = products.filter((p) => p.status === "verified").length;
   const pending = products.filter((p) => p.status !== "verified").length;
 
+  const handleExport = () => {
+    const verifiedProducts = products.filter((p) => p.status === "verified");
+    if (verifiedProducts.length === 0) {
+      alert("No verified products to export! Please verify products in the Catalog first.");
+      return;
+    }
+
+    const headers = ["Product Name", "Local Name", "Category", "Materials", "Minimum Price (INR)", "Maximum Price (INR)", "Status"];
+    const rows = verifiedProducts.map(p => [
+      `"${p.name}"`,
+      `"${p.nameLocal}"`,
+      `"${p.craft}"`,
+      `"${p.materials || ''}"`,
+      p.priceLow,
+      p.priceHigh,
+      p.status
+    ]);
+
+    const csvContent = [headers.join(","), ...rows.map(r => r.join(","))].join("\n");
+    const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+    const link = document.createElement("a");
+    const url = URL.createObjectURL(blob);
+    link.setAttribute("href", url);
+    link.setAttribute("download", `kalasangam_export_${new Date().toISOString().split('T')[0]}.csv`);
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  };
+
   return (
     <AppShell title="Export" subtitle="Prepared, never falsely 'published'">
       <Panel title="Eligible products">
@@ -73,10 +102,13 @@ function ExportPage() {
         </PanelRow>
       </Panel>
 
-      <button className="flex w-full items-center justify-center gap-2 rounded-xl bg-primary py-3.5 text-sm font-semibold text-primary-foreground">
-        <FileDown className="size-4" /> Generate export package
+      <button 
+        onClick={handleExport}
+        className="flex w-full items-center justify-center gap-2 rounded-xl bg-primary py-3.5 text-sm font-semibold text-primary-foreground hover:bg-primary/90 transition-colors"
+      >
+        <FileDown className="size-4" /> Generate ONDC/GeM CSV
       </button>
-      <p className="px-1 text-xs text-muted-foreground">
+      <p className="px-1 text-xs text-muted-foreground mt-4">
         Status shows Prepared / Handed off / Accepted by external system. Kalasangam is not a
         marketplace and never becomes merchant of record.
       </p>

@@ -16,6 +16,8 @@ export type Product = {
   materials: string;
   timeHours: number;
   exceptions: string[];
+  priceReasoning?: string;
+  merchantId?: string;
 };
 
 export const merchant = {
@@ -126,30 +128,97 @@ export const digiReady = [
   { area: "Grievance redressal", done: false },
 ];
 
-export const events = [
+export type CraftEvent = {
+  id: string;
+  name: string;
+  location: string;
+  date: string;
+  distance: string;
+  distanceKm: number;
+  stallFee: string;
+  tag: "Mela" | "Expo" | "Festival" | "Haat";
+  isFreeWithUdyam: boolean;
+  footfall: string;
+  lat: number;
+  lng: number;
+  subsidyNote?: string;
+};
+
+export const events: CraftEvent[] = [
   {
     id: "e1",
     name: "Vijayawada Craft Mela",
+    location: "P.W.D Grounds, MG Road, Vijayawada",
     date: "12–15 Sep",
     distance: "18 km",
+    distanceKm: 18,
     stallFee: "₹500 / stall",
     tag: "Mela",
+    isFreeWithUdyam: false,
+    footfall: "20,000+ visitors",
+    lat: 16.5062,
+    lng: 80.648,
+    subsidyNote: "50% rebate for women artisans",
   },
   {
     id: "e2",
-    name: "Handloom Expo, Machilipatnam",
+    name: "Handloom & Silk Expo, Machilipatnam",
+    location: "Zilla Parishad Convention Hall, Machilipatnam",
     date: "24 Sep",
     distance: "31 km",
+    distanceKm: 31,
     stallFee: "Free for Udyam holders",
     tag: "Expo",
+    isFreeWithUdyam: true,
+    footfall: "12,000+ textile buyers",
+    lat: 16.1875,
+    lng: 81.1389,
+    subsidyNote: "100% Ministry of Textiles sponsored stall",
   },
   {
     id: "e3",
-    name: "Dasara Shilp Bazaar",
+    name: "Dasara Shilp Bazaar, Guntur",
+    location: "BR Stadium Grounds, Guntur",
     date: "2–9 Oct",
-    distance: "64 km",
+    distance: "52 km",
+    distanceKm: 52,
     stallFee: "₹1,200 / stall",
     tag: "Festival",
+    isFreeWithUdyam: false,
+    footfall: "35,000+ festive shoppers",
+    lat: 16.3067,
+    lng: 80.4365,
+    subsidyNote: "Free electricity & stall tables provided",
+  },
+  {
+    id: "e4",
+    name: "Lepakshi Handicrafts Exhibition",
+    location: "Gandhi Bhavan, Main Road, Kakinada",
+    date: "18–22 Oct",
+    distance: "85 km",
+    distanceKm: 85,
+    stallFee: "Free with Artisan Card",
+    tag: "Haat",
+    isFreeWithUdyam: true,
+    footfall: "15,000+ craft enthusiasts",
+    lat: 16.9891,
+    lng: 82.2475,
+    subsidyNote: "APCO & Lepakshi state artisan support",
+  },
+  {
+    id: "e5",
+    name: "Shilparamam Arts & Crafts Village",
+    location: "Madhapur Craft Enclave, Hyderabad",
+    date: "Ongoing daily",
+    distance: "140 km",
+    distanceKm: 140,
+    stallFee: "₹800 / week",
+    tag: "Haat",
+    isFreeWithUdyam: true,
+    footfall: "50,000+ weekend footfall",
+    lat: 17.4526,
+    lng: 78.3784,
+    subsidyNote: "Direct B2B buyers & tourist pavilion",
   },
 ];
 

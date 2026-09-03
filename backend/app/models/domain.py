@@ -17,6 +17,8 @@ class ProductModel(Base):
     materials = Column(String)
     timeHours = Column(Integer)
     exceptions = Column(JSON)
+    priceReasoning = Column(String)
+    merchantId = Column(String, index=True, nullable=True)
 
 class DocStepModel(Base):
     __tablename__ = "doc_steps"
