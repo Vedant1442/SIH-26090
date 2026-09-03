@@ -14,8 +14,6 @@ import {
   Gem,
   RefreshCw,
   Tag as TagIcon,
-  Wifi,
-  BatteryMedium,
 } from "lucide-react";
 
 export const Route = createFileRoute("/onboarding")({
@@ -137,19 +135,6 @@ function OnboardingPage() {
   return (
     <div className="min-h-screen w-full flex justify-center">
       <div className="w-full max-w-[430px] min-h-screen bg-background sm:border-x border-border/80 shadow-[0_0_70px_rgba(0,0,0,0.4)] relative overflow-hidden flex flex-col justify-center px-6">
-        {/* Mock Mobile Phone Status Bar */}
-        <div className="hidden sm:flex absolute top-0 inset-x-0 items-center justify-between px-6 pt-2.5 pb-1 text-[11px] font-semibold text-muted-foreground select-none bg-background/80 backdrop-blur z-20">
-          <span className="font-mono text-xs text-foreground font-bold">9:41</span>
-          <div className="h-4 w-20 rounded-full bg-zinc-900/90 mx-auto flex items-center justify-center">
-            <div className="size-1.5 rounded-full bg-zinc-700 ml-auto mr-2" />
-          </div>
-          <div className="flex items-center gap-1.5 text-[10px]">
-            <span className="font-bold text-foreground">5G</span>
-            <Wifi className="size-3 text-foreground" />
-            <BatteryMedium className="size-3.5 text-foreground" />
-          </div>
-        </div>
-
         <div className="absolute top-0 left-0 w-full h-96 bg-gradient-to-b from-primary/10 to-transparent -z-10" />
         <div className="absolute -top-24 -right-24 size-64 rounded-full bg-primary/20 blur-3xl -z-10" />
         <div className="absolute top-48 -left-24 size-48 rounded-full bg-orange-500/10 blur-3xl -z-10" />

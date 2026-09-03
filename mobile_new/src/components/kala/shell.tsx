@@ -1,6 +1,6 @@
 import { Link, useRouterState } from "@tanstack/react-router";
 import { useState, useEffect, type ReactNode } from "react";
-import { Home, Package, Mic, ShieldCheck, MapPin, Wifi, BatteryMedium } from "lucide-react";
+import { Home, Package, Mic, ShieldCheck, MapPin } from "lucide-react";
 import { cn, getInitials } from "@/lib/utils";
 import { Chatbot } from "./chatbot";
 import { HelpWidgets } from "./help-widgets";
@@ -102,20 +102,7 @@ export function AppShell({
   return (
     <div className="min-h-screen w-full flex justify-center">
       <div className="mx-auto flex min-h-screen w-full max-w-[430px] flex-col border-border/80 bg-background sm:border-x shadow-[0_0_70px_rgba(0,0,0,0.4)] relative">
-        {/* Mock Mobile Phone Status Bar (Visible on desktop screens) */}
-        <div className="hidden sm:flex items-center justify-between px-6 pt-2.5 pb-1 text-[11px] font-semibold text-muted-foreground select-none bg-background/90 backdrop-blur z-20">
-          <span className="font-mono text-xs text-foreground font-bold">9:41</span>
-          <div className="h-4 w-20 rounded-full bg-zinc-900/90 mx-auto flex items-center justify-center">
-            <div className="size-1.5 rounded-full bg-zinc-700 ml-auto mr-2" />
-          </div>
-          <div className="flex items-center gap-1.5 text-[10px]">
-            <span className="font-bold text-foreground">5G</span>
-            <Wifi className="size-3 text-foreground" />
-            <BatteryMedium className="size-3.5 text-foreground" />
-          </div>
-        </div>
-
-        <header className="sticky top-0 z-20 border-b border-border bg-background/85 px-4 pt-3.5 pb-3 backdrop-blur">
+        <header className="sticky top-0 z-20 border-b border-border bg-background/85 px-4 pt-4 pb-3 backdrop-blur">
           <div className="grid grid-cols-[minmax(0,1fr)_auto] items-center gap-3">
             <div className="min-w-0">
               <h1 className="truncate text-2xl font-semibold">{title}</h1>

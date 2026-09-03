@@ -153,7 +153,7 @@ npm run dev
 - [x] **Relocated Logout button from Home dashboard header to Profile / Team (`/team`) Account section**
 - [x] **Help widget visibility: auto-opens on login, disappears completely when dismissed or finished (no lingering pill)**
 - [x] **Multi-account Product Isolation: products scoped by `merchantId` (phone / username) so accounts only see their own listed products**
-- [x] **Mobile Device Frame on Web: 430px smartphone column, dark desktop canvas backdrop, mock dynamic island & status bar (9:41, 5G, Battery), and anchored floating controls**
+- [x] **Mobile Device Frame on Web: Clean 430px smartphone column, studio canvas backdrop, anchored floating controls, no mock status bar**
 
 ---
 
